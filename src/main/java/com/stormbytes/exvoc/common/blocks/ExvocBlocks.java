@@ -12,19 +12,19 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ExvocBlocks {
     public static Block cinnabarOre;
 
-    private static <T extends Block> T Register(T blk) {
+    private static <T extends Block> T Register(String name, T blk) {
         ItemBlock iblk = new ItemBlock(blk);
-        iblk.setRegistryName(blk.getRegistryName());
+        iblk.setRegistryName(name);
 
         GameRegistry.register(blk);
         GameRegistry.register(iblk);
 
-        Exvoc.proxy.RegisterItemRenderer(iblk, 0, blk.getUnlocalizedName());
+        Exvoc.proxy.RegisterItemRenderer(iblk, 0, name);
 
         return blk;
     }
 
     public static void Init() {
-        cinnabarOre = Register(new BlockOreCinnabar());
+        cinnabarOre = Register("ore_cinnabar", new BlockOreCinnabar());
     }
 }
