@@ -20,6 +20,7 @@ package com.stormbytes.exvoc;
 import com.stormbytes.exvoc.blocks.BlockManager;
 import com.stormbytes.exvoc.client.CreativeTabExvoc;
 import com.stormbytes.exvoc.proxy.CommonProxy;
+import com.stormbytes.exvoc.proxy.ISidedProxy;
 import com.stormbytes.exvoc.world.GenerationManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -36,7 +37,7 @@ public class Exvoc {
     public static final CreativeTabExvoc exvocTab = new CreativeTabExvoc();
 
     @SidedProxy(serverSide = "com.stormbytes.exvoc.proxy.CommonProxy", clientSide = "com.stormbytes.exvoc.proxy.ClientProxy")
-    public static CommonProxy proxy;
+    public static ISidedProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent evt) {
