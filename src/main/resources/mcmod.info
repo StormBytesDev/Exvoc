@@ -1,6 +1,14 @@
 [
 {
-    "modid": "exvoc",
-    "name": "Exvoc Craft"
+  "modid": "exvoc",
+  "name": "Exvoc",
+  "description": "A Minecraft mod.",
+  "version": "1.0.0",
+  "mcversion": "1.12",
+  "updateJSON": "minecraftforge.net/versions.json",
+  "authorList": ["StormBytes Team"],
+  "dependencies": [
+       "mod_MinecraftForge"
+   ]
 }
 ]

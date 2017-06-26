@@ -15,20 +15,12 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.common.blocks;
+package com.stormbytes.exvoc.proxy;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 
-/**
- * Created by edu on 20/06/17.
- */
-public class BlockOreCinnabar extends Block {
-    public BlockOreCinnabar() {
-        super(Material.ROCK);
-        this.setUnlocalizedName("ore_cinnabar");
-        this.setRegistryName("ore_cinnabar");
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    }
+public class CommonProxy {
+
+    public void registerItemRenderer(Item item, int meta, String id) {}
+
 }

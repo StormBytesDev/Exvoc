@@ -15,32 +15,33 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.common;
+package com.stormbytes.exvoc;
 
-import com.stormbytes.exvoc.common.blocks.ExvocBlocks;
-import net.minecraft.block.Block;
-import net.minecraftforge.event.RegistryEvent;
+import com.stormbytes.exvoc.blocks.BlockManager;
+import com.stormbytes.exvoc.client.CreativeTabExvoc;
+import com.stormbytes.exvoc.proxy.CommonProxy;
+import com.stormbytes.exvoc.world.GenerationManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-/**
- * Created by edu on 20/06/17.
- */
-@Mod(modid = Exvoc.MOD_ID, version = Exvoc.VERSION)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Exvoc {
-    public static final String MOD_ID = "exvoc";
-    public static final String VERSION = "1.0";
 
-    @SidedProxy(serverSide = "com.stormbytes.exvoc.server.ServerProxy", clientSide = "com.stormbytes.exvoc.client.ClientProxy")
+    @Mod.Instance(Reference.MOD_ID)
+    public static Exvoc instance;
+
+    public static final CreativeTabExvoc exvocTab = new CreativeTabExvoc();
+
+    @SidedProxy(serverSide = "com.stormbytes.exvoc.proxy.CommonProxy", clientSide = "com.stormbytes.exvoc.proxy.ClientProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent evt) {
-        ExvocBlocks.Init();
+        BlockManager.registerBlocks();
+        GenerationManager.initManager();
     }
 
     @Mod.EventHandler
@@ -52,4 +53,5 @@ public class Exvoc {
     public void postInit(FMLPostInitializationEvent evt) {
 
     }
+
 }

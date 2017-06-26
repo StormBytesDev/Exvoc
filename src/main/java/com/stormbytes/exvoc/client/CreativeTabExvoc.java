@@ -32,33 +32,28 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.common.blocks;
+package com.stormbytes.exvoc.client;
 
-import com.stormbytes.exvoc.common.Exvoc;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import com.stormbytes.exvoc.Reference;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
-/**
- * Created by edu on 20/06/17.
- */
-public class ExvocBlocks {
-    public static Block cinnabarOre;
+public class CreativeTabExvoc extends CreativeTabs  {
 
-    private static <T extends Block> T Register(String name, T blk) {
-        ItemBlock iblk = new ItemBlock(blk);
-        iblk.setRegistryName(name);
-
-        GameRegistry.register(blk);
-        GameRegistry.register(iblk);
-
-        Exvoc.proxy.RegisterItemRenderer(iblk, 0, name);
-
-        return blk;
+    public CreativeTabExvoc() {
+        super(Reference.MOD_ID);
+        setBackgroundImageName("item_search.png");
     }
 
-    public static void Init() {
-        cinnabarOre = Register("ore_cinnabar", new BlockOreCinnabar());
+    @Override
+    public ItemStack getTabIconItem() {
+        return new ItemStack(Items.COAL);
     }
+
+    @Override
+    public boolean hasSearchBar() {
+        return true;
+    }
+
 }

@@ -1,0 +1,16 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"normal": [
+          { "model": "exvoc:ore_cassiterite1" },
+          { "model": "exvoc:ore_cassiterite2" },
+          { "model": "exvoc:ore_cassiterite3" }
+        ],
+		"inventory": {
+			"model": "cube_all",
+            "textures": {
+              "all": "exvoc:blocks/ore_cassiterite1"
+            }
+		}
+	}
+}

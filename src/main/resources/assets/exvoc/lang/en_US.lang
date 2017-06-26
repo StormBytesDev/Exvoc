@@ -1,1 +1,9 @@
-tile.ore_cinnabar.name=Cinnabar Ore
+
+# Blocks
+
+tile.ore_calcosite.name=Calcosite Ore
+tile.ore_cassiterite.name=Cassiterite Ore
+
+# Creative Tabs
+
+itemGroup.exvoc=Exvoc

@@ -15,17 +15,21 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.server;
+package com.stormbytes.exvoc.blocks.world;
 
-import com.stormbytes.exvoc.common.CommonProxy;
-import net.minecraft.item.Item;
+import com.stormbytes.exvoc.blocks.BlockExvoc;
+import net.minecraft.block.material.Material;
 
-/**
- * Created by edu on 20/06/17.
- */
-public class ServerProxy implements CommonProxy {
-    @Override
-    public void RegisterItemRenderer(Item item, int meta, String id) {
-        // lolol
+public class BlockOre extends BlockExvoc {
+
+    public BlockOre(String name, int harvestLevel, int hardness) {
+        super(Material.ROCK, name);
+
+        setHardness(hardness);
+        setResistance(5f);
+
+        setHarvestLevel("pickaxe", harvestLevel);
     }
+
+
 }

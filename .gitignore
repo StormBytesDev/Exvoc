@@ -2,3 +2,5 @@
 *.log
 build/
 .idea/
+out/
+run/

@@ -2,7 +2,7 @@
   "forge_marker": "1",
   "defaults": {
     "textures": {
-      "all": "exvoc/blocks/ore_cinnabar"
+      "all": "exvoc/blocks/ore_calcosite"
     }
   },
   "variants": {

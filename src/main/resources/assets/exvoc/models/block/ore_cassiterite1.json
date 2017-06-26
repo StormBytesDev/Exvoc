@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "exvoc:blocks/ore_cassiterite1"
+  }
+}

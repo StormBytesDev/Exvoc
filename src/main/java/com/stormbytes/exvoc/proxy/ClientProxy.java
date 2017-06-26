@@ -15,16 +15,18 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.common;
+package com.stormbytes.exvoc.proxy;
 
+import com.stormbytes.exvoc.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 
-/**
- * Created by edu on 20/06/17.
- */
-public interface CommonProxy {
-    public void RegisterItemRenderer(Item item, int meta, String id);
+public class ClientProxy extends CommonProxy {
+
+    @Override
+    public void registerItemRenderer(Item item, int meta, String id) {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Reference.MOD_ID + ":" + id, "inventory"));
+    }
 
 }
