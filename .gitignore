@@ -7,3 +7,4 @@ run/
 *.ipr
 *.iml
 *.iws
+.gradle/
