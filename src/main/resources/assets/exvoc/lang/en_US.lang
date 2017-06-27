@@ -1,9 +1,14 @@
 
 # Blocks
 
-tile.ore_calcosite.name=Calcosite Ore
-tile.ore_cassiterite.name=Cassiterite Ore
+tile.ore_calcosite.name=Calcosite
+tile.ore_cassiterite.name=Cassiterite
 
 # Creative Tabs
 
 itemGroup.exvoc=Exvoc
+
+# Items
+
+item.dust_calcosite.name=Calcosite Dust
+item.dust_cassiterite.name=Cassiterite Dust

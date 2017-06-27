@@ -37,7 +37,6 @@ package com.stormbytes.exvoc.blocks;
 import com.stormbytes.exvoc.Exvoc;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockExvoc extends Block {
 

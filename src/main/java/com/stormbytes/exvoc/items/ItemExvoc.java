@@ -15,12 +15,21 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.proxy;
+package com.stormbytes.exvoc.items;
 
+import com.stormbytes.exvoc.Exvoc;
 import net.minecraft.item.Item;
 
-public interface ISidedProxy {
+public class ItemExvoc extends Item {
 
-    public void registerItemRenderer(Item item, int meta, String id);
+    protected String itemName;
+
+    public ItemExvoc(String name) {
+        this.itemName = name;
+
+        setCreativeTab(Exvoc.exvocTab);
+        setUnlocalizedName(name);
+        setRegistryName(name);
+    }
 
 }

@@ -19,6 +19,7 @@ package com.stormbytes.exvoc;
 
 import com.stormbytes.exvoc.blocks.BlockManager;
 import com.stormbytes.exvoc.client.CreativeTabExvoc;
+import com.stormbytes.exvoc.items.ItemManager;
 import com.stormbytes.exvoc.proxy.CommonProxy;
 import com.stormbytes.exvoc.proxy.ISidedProxy;
 import com.stormbytes.exvoc.world.GenerationManager;
@@ -41,6 +42,7 @@ public class Exvoc {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent evt) {
+        ItemManager.regiterItems();
         BlockManager.registerBlocks();
         GenerationManager.initManager();
     }

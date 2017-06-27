@@ -15,12 +15,28 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.proxy;
+package com.stormbytes.exvoc.items;
 
+import com.stormbytes.exvoc.Exvoc;
+import com.stormbytes.exvoc.items.ore.ItemDust;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public interface ISidedProxy {
+public class ItemManager {
 
-    public void registerItemRenderer(Item item, int meta, String id);
+    public static ItemDust dustCalcosite;
+    public static ItemDust dustCassiterite;
+
+    private static <T extends Item> T register(String name, T item) {
+        GameRegistry.register(item);
+        Exvoc.proxy.registerItemRenderer(item, 0, name);
+
+        return item;
+    }
+
+    public static void regiterItems() {
+        dustCalcosite = register("dust_calcosite", new ItemDust("dust_calcosite"));
+        dustCassiterite = register("dust_cassiterite", new ItemDust("dust_cassiterite"));
+    }
 
 }
