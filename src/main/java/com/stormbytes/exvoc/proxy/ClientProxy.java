@@ -19,7 +19,6 @@ package com.stormbytes.exvoc.proxy;
 
 import com.stormbytes.exvoc.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 

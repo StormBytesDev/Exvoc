@@ -18,7 +18,6 @@
 package com.stormbytes.exvoc.proxy;
 
 import net.minecraft.item.Item;
-import net.minecraft.util.text.translation.I18n;
 
 public class CommonProxy implements ISidedProxy{
 
