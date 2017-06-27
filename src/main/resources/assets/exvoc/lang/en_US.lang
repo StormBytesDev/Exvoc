@@ -4,6 +4,8 @@
 tile.ore_calcosite.name=Calcosite
 tile.ore_cassiterite.name=Cassiterite
 
+tile.steamworks_grinder.name=Grinder
+
 # Creative Tabs
 
 itemGroup.exvoc=Exvoc

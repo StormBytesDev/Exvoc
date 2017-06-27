@@ -32,43 +32,18 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.blocks;
+package com.stormbytes.exvoc.client.gui.slot;
 
-import com.stormbytes.exvoc.Exvoc;
-import com.stormbytes.exvoc.blocks.steamworks.BlockGrinder;
-import com.stormbytes.exvoc.blocks.world.BlockOre;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
-public class BlockManager {
+public class SlotInventory extends SlotItemHandler {
 
-    public static BlockOre oreCalcosite;
-    public static BlockOre oreCassiterite;
-
-    public static BlockGrinder steamworksGrinder;
-
-    private static <T extends Block> T register(String name, T block) {
-        ItemBlock itemBlock = new ItemBlock(block);
-        itemBlock.setRegistryName(name);
-
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-
-        Exvoc.proxy.registerItemRenderer(itemBlock, 0, name);
-
-        if (block instanceof BlockExvocTile) {
-            ((BlockExvocTile) block).registerTileEntity();
-        }
-
-        return block;
+    public SlotInventory(IItemHandler inventory, int index, int x, int y) {
+        super(inventory, index, x, y);
     }
 
-    public static void registerBlocks() {
-        oreCalcosite = register("ore_calcosite", new BlockOre("ore_calcosite", 2, 4));
-        oreCassiterite = register("ore_cassiterite", new BlockOre("ore_cassiterite", 2, 4));
-
-        steamworksGrinder = register("steamworks_grinder", new BlockGrinder());
-    }
-
+    @Override
+    public void onSlotChange(ItemStack p_75220_1_, ItemStack p_75220_2_) { inventory.markDirty(); }
 }

@@ -32,43 +32,34 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.blocks;
+package com.stormbytes.exvoc.client.gui.container;
 
-import com.stormbytes.exvoc.Exvoc;
-import com.stormbytes.exvoc.blocks.steamworks.BlockGrinder;
-import com.stormbytes.exvoc.blocks.world.BlockOre;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import com.stormbytes.exvoc.client.gui.slot.SlotInventory;
+import com.stormbytes.exvoc.client.gui.slot.SlotRemoveOnly;
+import com.stormbytes.exvoc.tileentity.steamworks.TileEntityGrinder;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
-public class BlockManager {
+import javax.annotation.Nonnull;
 
-    public static BlockOre oreCalcosite;
-    public static BlockOre oreCassiterite;
+public class ContainerGrinder extends ContainerExvoc {
 
-    public static BlockGrinder steamworksGrinder;
+    public ContainerGrinder(InventoryPlayer inventoryPlayer, final TileEntityGrinder tEntity) {
+        IItemHandler inventory = tEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-    private static <T extends Block> T register(String name, T block) {
-        ItemBlock itemBlock = new ItemBlock(block);
-        itemBlock.setRegistryName(name);
-
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-
-        Exvoc.proxy.registerItemRenderer(itemBlock, 0, name);
-
-        if (block instanceof BlockExvocTile) {
-            ((BlockExvocTile) block).registerTileEntity();
-        }
-
-        return block;
+        addSlotToContainer(new SlotInventory(inventory, 0, 80, 35));
+        addSlotToContainer(new SlotRemoveOnly(inventory, 1,100, 35));
+        addPlayerInventory(inventoryPlayer, 8, 140);
     }
 
-    public static void registerBlocks() {
-        oreCalcosite = register("ore_calcosite", new BlockOre("ore_calcosite", 2, 4));
-        oreCassiterite = register("ore_cassiterite", new BlockOre("ore_cassiterite", 2, 4));
-
-        steamworksGrinder = register("steamworks_grinder", new BlockGrinder());
+    @Override
+    public boolean canInteractWith(EntityPlayer playerIn) {
+        return true;
     }
 
 }

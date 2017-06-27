@@ -32,43 +32,21 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.blocks;
+package com.stormbytes.exvoc.client.gui;
 
-import com.stormbytes.exvoc.Exvoc;
-import com.stormbytes.exvoc.blocks.steamworks.BlockGrinder;
-import com.stormbytes.exvoc.blocks.world.BlockOre;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.inventory.Container;
 
-public class BlockManager {
+public class GuiGrinder extends GuiExvoc {
 
-    public static BlockOre oreCalcosite;
-    public static BlockOre oreCassiterite;
+    public GuiGrinder(Container container) {
+        super(container, "textures/gui/grinder.png", "tile.steamworks_grinder.name");
 
-    public static BlockGrinder steamworksGrinder;
+        xSize = 176;
+        ySize = 222;
 
-    private static <T extends Block> T register(String name, T block) {
-        ItemBlock itemBlock = new ItemBlock(block);
-        itemBlock.setRegistryName(name);
-
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-
-        Exvoc.proxy.registerItemRenderer(itemBlock, 0, name);
-
-        if (block instanceof BlockExvocTile) {
-            ((BlockExvocTile) block).registerTileEntity();
-        }
-
-        return block;
-    }
-
-    public static void registerBlocks() {
-        oreCalcosite = register("ore_calcosite", new BlockOre("ore_calcosite", 2, 4));
-        oreCassiterite = register("ore_cassiterite", new BlockOre("ore_cassiterite", 2, 4));
-
-        steamworksGrinder = register("steamworks_grinder", new BlockGrinder());
+        setDrawName(true);
+        setDrawInventory(true);
     }
 
 }

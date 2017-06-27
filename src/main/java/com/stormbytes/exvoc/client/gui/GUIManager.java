@@ -32,43 +32,39 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.blocks;
+package com.stormbytes.exvoc.client.gui;
 
-import com.stormbytes.exvoc.Exvoc;
-import com.stormbytes.exvoc.blocks.steamworks.BlockGrinder;
-import com.stormbytes.exvoc.blocks.world.BlockOre;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import com.stormbytes.exvoc.client.gui.container.ContainerGrinder;
+import com.stormbytes.exvoc.client.gui.GuiGrinder;
+import com.stormbytes.exvoc.tileentity.steamworks.TileEntityGrinder;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class BlockManager {
+public class GUIManager implements IGuiHandler {
 
-    public static BlockOre oreCalcosite;
-    public static BlockOre oreCassiterite;
+    public static final int GRINDER = 0;
 
-    public static BlockGrinder steamworksGrinder;
-
-    private static <T extends Block> T register(String name, T block) {
-        ItemBlock itemBlock = new ItemBlock(block);
-        itemBlock.setRegistryName(name);
-
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-
-        Exvoc.proxy.registerItemRenderer(itemBlock, 0, name);
-
-        if (block instanceof BlockExvocTile) {
-            ((BlockExvocTile) block).registerTileEntity();
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        switch (ID) {
+            case GRINDER:
+                return new ContainerGrinder(player.inventory, (TileEntityGrinder) world.getTileEntity(new BlockPos(x, y, z)));
+            default:
+                return null;
         }
-
-        return block;
     }
 
-    public static void registerBlocks() {
-        oreCalcosite = register("ore_calcosite", new BlockOre("ore_calcosite", 2, 4));
-        oreCassiterite = register("ore_cassiterite", new BlockOre("ore_cassiterite", 2, 4));
-
-        steamworksGrinder = register("steamworks_grinder", new BlockGrinder());
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        switch (ID) {
+            case GRINDER:
+                return new GuiGrinder((Container) getServerGuiElement(ID, player, world, x, y, z));
+            default:
+                return null;
+        }
     }
 
 }

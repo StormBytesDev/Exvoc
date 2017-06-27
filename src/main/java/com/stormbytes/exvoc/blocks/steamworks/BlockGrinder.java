@@ -32,43 +32,31 @@
  * along with Exvoc.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stormbytes.exvoc.blocks;
+package com.stormbytes.exvoc.blocks.steamworks;
 
-import com.stormbytes.exvoc.Exvoc;
-import com.stormbytes.exvoc.blocks.steamworks.BlockGrinder;
-import com.stormbytes.exvoc.blocks.world.BlockOre;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
+import com.stormbytes.exvoc.blocks.BlockExvocTile;
+import com.stormbytes.exvoc.tileentity.steamworks.TileEntityGrinder;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class BlockManager {
+public class BlockGrinder extends BlockExvocTile<TileEntityGrinder> {
 
-    public static BlockOre oreCalcosite;
-    public static BlockOre oreCassiterite;
+    public BlockGrinder() {
+        super(Material.ROCK, "steamworks_grinder");
 
-    public static BlockGrinder steamworksGrinder;
-
-    private static <T extends Block> T register(String name, T block) {
-        ItemBlock itemBlock = new ItemBlock(block);
-        itemBlock.setRegistryName(name);
-
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-
-        Exvoc.proxy.registerItemRenderer(itemBlock, 0, name);
-
-        if (block instanceof BlockExvocTile) {
-            ((BlockExvocTile) block).registerTileEntity();
-        }
-
-        return block;
+        setHardness(3f);
     }
 
-    public static void registerBlocks() {
-        oreCalcosite = register("ore_calcosite", new BlockOre("ore_calcosite", 2, 4));
-        oreCassiterite = register("ore_cassiterite", new BlockOre("ore_cassiterite", 2, 4));
+    @Override
+    public TileEntityGrinder createTileEntity(World world, IBlockState state) {
+        return new TileEntityGrinder();
+    }
 
-        steamworksGrinder = register("steamworks_grinder", new BlockGrinder());
+    @Override
+    public void registerTileEntity() {
+        GameRegistry.registerTileEntity(TileEntityGrinder.class, getRegistryName().toString());
     }
 
 }

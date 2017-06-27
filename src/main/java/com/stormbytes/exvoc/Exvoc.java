@@ -19,8 +19,8 @@ package com.stormbytes.exvoc;
 
 import com.stormbytes.exvoc.blocks.BlockManager;
 import com.stormbytes.exvoc.client.CreativeTabExvoc;
+import com.stormbytes.exvoc.client.gui.GUIManager;
 import com.stormbytes.exvoc.items.ItemManager;
-import com.stormbytes.exvoc.proxy.CommonProxy;
 import com.stormbytes.exvoc.proxy.ISidedProxy;
 import com.stormbytes.exvoc.world.GenerationManager;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Exvoc {
@@ -45,6 +46,7 @@ public class Exvoc {
         ItemManager.regiterItems();
         BlockManager.registerBlocks();
         GenerationManager.initManager();
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIManager());
     }
 
     @Mod.EventHandler
